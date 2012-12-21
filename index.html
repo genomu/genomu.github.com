@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Genomu</title>
+<!--    <link href='fonts.css' rel='stylesheet' type='text/css'> -->
+    <script type="text/javascript" src="d3.v2.js"></script>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <style type="text/css">
+    </style>
+    <link href="reveal.min.css" rel="stylesheet" type="text/css">
+    <link href="theme.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+<div class="reveal">
+        <div class="slides">
+                <section>
+                  <h1>Genomu</h1>
+                  <h2>A concurrency-oriented K/V database</h2>
+                  <a href="#/why">Why?</a>
+                </section>
+                <section id="why">
+                  <h2>Why?</h2>
+                  <p>In a traditional K/V database,<br>
+                     let's assume there is a Key with a value of [1,2,3,4]<br>
+                     Now, let two clients <span style="color: lightgreen">A</span>
+                    and <span style="color: lightblue">B</span> modify it:</p>
+                  <p>
+                  <ul style="list-style-type: none">
+                    <li><span style="color: lightgreen">A:</span> Key &#x21d2; [1,2,3,4] + [5]</li>
+                    <li><span style="color: lightblue">B:</span> Key &#x21d2; [0] + [1,2,3,4]</li>
+                  </ul>
+                  </p>
+                  <p><a href="#/why-result">What's the result?</a></p>
+                </section>
+                <section id="why-result">
+                  <h2>Either or neither</h2>
+                  <p>
+                    In some systems, the latest write will win.<br>
+                    In other, you'll have a conflict to resolve.<br>
+                  </p>
+                  <p>
+                    <span style="font-size: 200%">ಠ_ಠ</span>
+                  </p>
+                  <p>
+                    <a href="#/why-genomu">What does Genomu do?</a>
+                  </p>
+                </section>
+              <section id="why-genomu">
+                <h2>A well defined behaviour</h2>
+                <p>In Genomu, the result will be [<span style="color: lightblue">0</span>,1,2,3,4,<span style="color: lightgreen">5</span>]</p>
+                <p>That's it. No conflicts and everybody wins.</p>
+                <p><a href="#/genomu-how">How does Genomu achieve this?</a></p>
+              </section>
+              <section id="genomu-how">
+                <h2>Event sourcing</h2>
+                <p>Every command sent by a client is appended to the log<br>
+                   from which the resulting value is reconstructed</p>
+                <p><code style="font-size: 70%">[1,2,3,4] &#x2192; append([<span style="color: lightgreen">5</span>]) &#x2192; prepend([<span style="color: lightblue">0</span>]) </code></p>
+                <p><center>is equivalent to</center></p>
+                <p><code style="font-size: 70%">[1,2,3,4] &#x2192; prepend([<span style="color: lightblue">0</span>]) &#x2192; append([<span style="color: lightgreen">5</span>]) </code></p>
+                <p><a href="#/genomu-how">What's underneath?</a></p>
+              </section>
+        </div>
+</div>
+<script type="text/javascript" src="reveal.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Display a presentation progress bar
+        progress: false,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // Number of milliseconds between automatically proceeding to the 
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // Apply a 3D roll to links on hover
+        rollingLinks: true,
+
+        // Transition style
+        transition: 'default' // default/cube/page/concave/zoom/linear/none
+});
+});
+</script>
+  </body>
+</html>
