@@ -22,8 +22,10 @@
                 <section id="why">
                   <h2>Why?</h2>
                   <p>In a traditional K/V database,<br>
-                     let's assume there is a Key with a value of [1,2,3,4]<br>
-                     Now, let two clients <span style="color: lightgreen">A</span>
+                     let's assume<br> there is a Key with a value of [1,2,3,4]
+                   </p>
+                   <p>
+                     Let two clients <span style="color: lightgreen">A</span>
                     and <span style="color: lightblue">B</span> modify it:</p>
                   <p>
                   <ul style="list-style-type: none">
@@ -56,9 +58,9 @@
                 <h2>Event sourcing</h2>
                 <p>Every command sent by a client is appended to the log<br>
                    from which the resulting value is reconstructed</p>
-                <p><code style="font-size: 70%">[1,2,3,4] &#x2192; append([<span style="color: lightgreen">5</span>]) &#x2192; prepend([<span style="color: lightblue">0</span>]) </code></p>
+                <p><code style="font-weight: bold; font-size: 70%">[1,2,3,4] &#x2192; append([<span style="color: lightgreen">5</span>]) &#x2192; prepend([<span style="color: lightblue">0</span>]) </code></p>
                 <p><center>is equivalent to</center></p>
-                <p><code style="font-size: 70%">[1,2,3,4] &#x2192; prepend([<span style="color: lightblue">0</span>]) &#x2192; append([<span style="color: lightgreen">5</span>]) </code></p>
+                <p><code style="font-weight: bold; font-size: 70%">[1,2,3,4] &#x2192; prepend([<span style="color: lightblue">0</span>]) &#x2192; append([<span style="color: lightgreen">5</span>]) </code></p>
                 <p><a href="mailto:hi@spawngrid.com">More information coming...</a></p>
               </section>
         </div>
