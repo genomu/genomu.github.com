@@ -39,21 +39,21 @@ $(document).ready(function(){
             .attr("fill", function(d, i) { return colors(d.data.color); } )
             .attr("stroke", function(d, i) { return colors(d.data.color); } )
             .attr("ring-seg", function(d, i) { return d.data.color; } )
-            .attr("fill-opacity", "55%")
-            .attr("stroke-opacity","0%")
+            .attr("fill-opacity", "0.55")
+            .attr("stroke-opacity","0")
             .attr("d", ring)
         .on("mouseover", function() {
             els = 'path[ring-seg="'+$(this).attr('ring-seg')+'"]';
             d3.selectAll(els)
               .transition()
               .duration(500)
-              .attr("fill-opacity","100%")
+              .attr("fill-opacity","1")
         })
         .on("mouseout", function() {
             els = 'path[ring-seg="'+$(this).attr('ring-seg')+'"]';
             d3.selectAll(els)
               .transition()
-              .attr("fill-opacity","55%")
+              .attr("fill-opacity","0.55")
         })
 
 });
