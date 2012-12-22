@@ -46,7 +46,7 @@ $(document).ready(function(){
             els = 'path[ring-seg="'+$(this).attr('ring-seg')+'"]';
             d3.selectAll(els)
               .transition()
-              .duration(500)
+              .duration(200)
               .attr("fill-opacity","1")
         })
         .on("mouseout", function() {
